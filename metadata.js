@@ -18,6 +18,9 @@ module.exports = {
   },
   "new": {
     "default": [
+      [".vscode", ".vscode"],
+      ["alinode", "alinode"],
+      ["docker", "docker"],
       ["src/adapter", "src/adapter"],
       ["src/bootstrap", "src/bootstrap"],
       ["src/config", "src/config"],
@@ -30,7 +33,6 @@ module.exports = {
       ["src/utils", "src/utils"],
       ["test", "test"],
       ["www", "www"],
-      [".vscode", ".vscode"],
       ["ava.config.js", "ava.config.js"],
       ["development.js", "development.js"],
       ["eslintrc", ".eslintrc"],
@@ -43,6 +45,9 @@ module.exports = {
       ["README.md", "README.md"],
     ],
     "multiModule": [
+      [".vscode", ".vscode"],
+      ["alinode", "alinode"],
+      ["docker", "docker"],
       ["src/adapter", "src/common/adapter"],
       ["src/bootstrap", "src/common/bootstrap"],
       ["src/config", "src/common/config"],
@@ -56,7 +61,6 @@ module.exports = {
       ["src/utils", "src/utils"],
       ["test", "test/[moduleName]"],
       ["www", "www"],
-      [".vscode", ".vscode"],
       ["ava.config.js", "ava.config.js"],
       ["development.js", "development.js"],
       ["eslintrc", ".eslintrc"],

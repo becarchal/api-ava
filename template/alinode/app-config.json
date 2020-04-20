@@ -1,0 +1,7 @@
+{
+  "appid": "",
+  "secret": "",
+  "logdir": "/root/logs",
+  "error_log": ["/root/errorlogs"],
+  "packages": ["/root/package.json"]
+}

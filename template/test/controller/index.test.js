@@ -1,6 +1,7 @@
 // thinkjs单元测试文档 https://thinkjs.org/zh-cn/doc/3.0/unitest.html
 // ava 测试文档 https://github.com/avajs/ava-docs/blob/master/zh_CN/readme.md
 // 单元测试的几个指标 https://www.jianshu.com/p/1a89b2df6423
+// 测试例子 https://github.com/becarchal/jackblog-api-koa.git
 import { test, describe, before, after, beforeEach, afterEach } from 'ava-spec';
 import { koaApp, think } from '../helpers/app';
 

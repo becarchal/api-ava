@@ -1,0 +1,43 @@
+version: '3.5'                            # docker-compose 版本
+services:                                 # 组织哪些容器
+  rsnodeapp:                              # 第一个容器
+    image: rsnodeapp                      # 镜像名
+    container_name: rsnodeapp             # 容器名
+    build:
+      context: ../                        # build上下文目录
+      dockerfile: ./docker/rs.Dockerfile  # dockerfile文件名
+    ports:
+      - 8360:8360
+    # environment:                        
+    #  PORT: 8360
+    #   NODE_ENV: production
+    restart: always                       # 容器重启策略
+    # network_mode: "host"
+    volumes:                              # 挂载宿主的一个目录或者一个已存在的数据卷到容器 卷积用绝对路径
+      - /home/jenkins/jenkins_home/workspace/[项目名]/logs:/root/logs  # 挂载到jenkins
+      - /home/jenkins/jenkins_home/workspace/[项目名]/errorlogs:/root/errorlogs  # 挂载到jenkins
+      - /etc/localtime:/etc/localtime     # 宿主机与容器时间同步
+      - /etc/timezone:/etc/timezone       # 宿主机与容器时区同步
+    networks:
+      - outside
+  nginx-proxy:
+    image: nginx:stable-alpine
+    container_name: nginx-proxy
+    ports: 
+      - "80:80"                            # because YAML parses numbers in the format xx:yy as a base-60 value. For this reason, we recommend always explicitly specifying your port mappings as strings.
+      # - "443:443"                        # for https https://docs.docker.com/compose/compose-file/
+    restart: always
+    # network_mode: "host"
+    networks:
+      - outside
+    build:
+      context: ../                              # build上下文目录
+      dockerfile: ./docker/nginx.Dockerfile     # dockerfile文件名
+    depends_on:                                 # 依赖 rsnodeapp 容器提供的服务# 启动顺序
+      - rsnodeapp
+    volumes:                                    # 挂载宿主的一个目录或者一个已存在的数据卷到容器 卷积用绝对路径
+      - /home/jenkins/jenkins_home/workspace/[项目名]/docker/nginx.conf:/etc/nginx/conf.d/default.conf
+      - /home/nginx/logs:/var/log/nginx
+networks: # 实现通信
+  outside:
+    driver: bridge
