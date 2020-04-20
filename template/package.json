@@ -1,0 +1,64 @@
+{
+  "name": "<%= name %>",
+  "description": "<%= description %>",
+  "version": "1.0.0",
+  "author": "<%- author %>",
+  "scripts": {
+    "start": "node development.js",
+    "pre": "node production.js",
+    "test": "THINK_UNIT_TEST=1 nyc ava -v test/**/**.test.js",
+    "test:report": "npm run test && nyc report --reporter=html",
+    "test:watch": "THINK_UNIT_TEST=1 nyc ava -w -v test/**/**.test.js && nyc report --reporter=html",
+    "lint": "eslint src/",
+    "lint-fix": "eslint --fix src/",
+    "apidoc": "apidoc -i src/api/controller -o apidoc/ -t apidoctemplate/ && serve -p 5500 -s apidoc/"
+  },
+  "dependencies": {
+    "dayjs": "^1.8.24",
+    "jsonwebtoken": "^8.0.0",
+    "think-logger3": "^1.0.0",
+    "think-model": "^1.0.0",
+    "think-model-mysql": "^1.0.0",
+    "thinkjs": "^3.0.0",
+    "kcors": "^2.2.1",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1",
+    "omit.js": "^1.0.2",
+    "redis": "^2.8.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "think-cache": "^1.0.0",
+    "think-cache-file": "^1.0.8",
+    "think-session-redis": "^1.1.2",
+    "weixinpay": "^1.0.12"
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "apidoc": "^0.17.7",
+    "ava": "^3.7.0",
+    "ava-spec": "^1.1.1",
+    "eslint": "^4.2.0",
+    "eslint-config-think": "^1.0.0",
+    "nyc": "^7.0.0",
+    "superkoa": "^1.0.3",
+    "think-mock": "^1.0.1",
+    "think-watcher": "^3.0.0"
+  },
+  "repository": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "apidoc": {
+    "header": {
+      "title": "server接口文档"
+    },
+    "title": "Custom apiDoc browser title",
+    "url": "https://**/api",
+    "sampleUrl": "https://**/api"
+  },
+  "readmeFilename": "README.md"
+}
